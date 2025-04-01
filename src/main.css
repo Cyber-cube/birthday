@@ -1,7 +1,15 @@
-.z-inxex-high {
+.z-index-high {
   z-index: 2;
+  background-color: green;
 }
 
-.z-inxex-low {
+.z-index-low {
   z-index: 1;
+  background-color: blue;
 }
+
+
+
+/* body {
+  background-color: orange;
+} */
