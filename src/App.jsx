@@ -13,7 +13,8 @@ function App({ className }) {
   const [mainOffsetX, setMainOffsetX] = useState()
   const [mainOffsetY, setMainOffsetY] = useState()
   const [isTouchDevice, setIsTouchDevice] = useState()
-
+  
+  const hi = "hi"
   function touchDevice() {
     try {
       document.createEvent("TouchEvent")
