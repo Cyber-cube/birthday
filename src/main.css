@@ -1,6 +1,8 @@
 .z-index-high {
   z-index: 2;
   background-color: green;
+  width: 20rem;
+  height: 20rem;
 }
 
 .z-index-low {
@@ -8,7 +10,11 @@
   background-color: blue;
 }
 
-
+body {
+  overscroll-behavior: none;
+  overflow-y: hidden;
+  touch-action: none;
+}
 
 /* body {
   background-color: orange;

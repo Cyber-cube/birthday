@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 // import "./main.css"
 
@@ -8,27 +8,33 @@ function App({ className }) {
   const [posTop, setPosTop] = useState(100)
   const [posLeft, setPosLeft] = useState(50)
   const [isHeld, setIsHeld] = useState(false)
-  const [offsetX, setOffsetX] = useState()
-  const [offsetY, setOffsetY] = useState()
-  const [mainOffsetX, setMainOffsetX] = useState()
-  const [mainOffsetY, setMainOffsetY] = useState()
-  const [isTouchDevice, setIsTouchDevice] = useState()
+  // const [offsetX, setOffsetX] = useState()
+  const offsetX = useRef()
+  // const [offsetY, setOffsetY] = useState()
+  const offsetY = useRef()
+  // const [mainOffsetX, setMainOffsetX] = useState()
+  const mainOffsetX = useRef()
+  // const [mainOffsetY, setMainOffsetY] = useState()
+  const mainOffsetY = useRef()
+  // const [isTouchDevice, setIsTouchDevice] = useState()
+  const isTouchDevice = useRef()
   
-  const hi = "hi"
   function touchDevice() {
     try {
       document.createEvent("TouchEvent")
-      setIsTouchDevice(true)
+      // setIsTouchDevice(true)
+      isTouchDevice.current = true
     } catch (e) {
-      setIsTouchDevice(false)
+      // setIsTouchDevice(false)
+      isTouchDevice.current = false
     }
   }
 
   useEffect(() => {
     const div = document.querySelector('.div')
 
-    setOffsetX(div.offsetLeft)
-    setOffsetY(div.offsetTop)
+    offsetX.current = div.offsetLeft
+    offsetY.current = div.offsetTop
 
     touchDevice()
     // setInterval(() => {console.log(document.querySelector('div').style.zIndex)}, 3000)
@@ -38,12 +44,12 @@ function App({ className }) {
 
   function handleMove(event) {
     if (isHeld) {
-      setPosTop(event.clientY - mainOffsetY)
-      setPosLeft(event.clientX - mainOffsetX)
+      setPosTop(event.clientY - mainOffsetY.current)
+      setPosLeft(event.clientX - mainOffsetX.current)
       /* console.log("Movement")
       console.log(offsetX, offsetY, posLeft, posTop, event) */
-      setOffsetX(posLeft)
-      setOffsetY(posTop)
+      offsetX.current = posLeft
+      offsetY.current = posTop
     }
   }
 
@@ -51,27 +57,27 @@ function App({ className }) {
     event.preventDefault()
     // console.log("start")
     setIsHeld(true)
-    setMainOffsetX(event.clientX - offsetX)
-    setMainOffsetY(event.clientY - offsetY)
+    mainOffsetX.current = event.clientX - offsetX.current
+    mainOffsetY.current = event.clientY - offsetY.current
     /* console.log(isTouchDevice)
     console.log(isHeld, mainOffsetX, mainOffsetY, event) */
   }
 
   function handleTouchMove(event) {
     if (isHeld) {
-      setPosTop(event.touches[0].clientY - mainOffsetY)
-      setPosLeft(event.touches[0].clientX - mainOffsetX)
+      setPosTop(event.touches[0].clientY - mainOffsetY.current)
+      setPosLeft(event.touches[0].clientX - mainOffsetX.current)
       /* console.log("Movement")
       console.log(offsetX, offsetY, posLeft, posTop, event) */
-      setOffsetX(posLeft)
-      setOffsetY(posTop)
+      offsetX.current = posLeft
+      offsetY.current = posTop
     }
   }
 
   function handleTouchDown(event) {
     setIsHeld(true)
-    setMainOffsetX(event.touches[0].clientX - offsetX)
-    setMainOffsetY(event.touches[0].clientY - offsetY)
+    mainOffsetX.current = event.touches[0].clientX - offsetX.current
+    mainOffsetY.current = event.touches[0].clientY - offsetY.current
     // console.log(zIndex)
     // console.log("started", offsetX, offsetY)
   }
@@ -81,15 +87,15 @@ function App({ className }) {
       <div
         // draggable="true"
         className={`div ${className}`}
-        onMouseDown={() => !isTouchDevice ? mouseDown(event) : null}
-        onMouseMove={() => !isTouchDevice ? handleMove(event) : null}
+        onMouseDown={() => !isTouchDevice.current ? mouseDown(event) : null}
+        onMouseMove={() => !isTouchDevice.current ? handleMove(event) : null}
         onMouseUp={() => {
-          !isTouchDevice ? setIsHeld(false) : null
+          !isTouchDevice.current ? setIsHeld(false) : null
         }}
 
-        onTouchStart={() => isTouchDevice ? handleTouchDown(event) : null}
-        onTouchMove={() => isTouchDevice ? handleTouchMove(event) : null}
-        onTouchEnd={() => isTouchDevice ? setIsHeld(false) : null}
+        onTouchStart={() => isTouchDevice.current ? handleTouchDown(event) : null}
+        onTouchMove={() => isTouchDevice.current ? handleTouchMove(event) : null}
+        onTouchEnd={() => isTouchDevice.current ? setIsHeld(false) : null}
         style={
           {
             position: "absolute",
