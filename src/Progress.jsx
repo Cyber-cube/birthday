@@ -1,0 +1,36 @@
+import PropTypes from "prop-types"
+
+function Progress({ value }) {
+  return (
+    <div style={{
+      'display': 'grid',
+      /* 'justifyContent': 'center',
+      'alignContent': 'center' */
+      'placeItems': 'center'
+    }}>
+      <p>Move the cards to progress!</p>
+      <div style={{
+        'height': '10px',
+        'width': '300px',
+        'border': 'solid 2px #7A1C1C',
+        'backgroundColor': '#F8E6CB'
+      }}>
+        <div style={
+          {
+            'position': "relative",
+            'height': '100%',
+            'backgroundColor': '#E2BF88',
+            'width': `${6.25 * value}%`,
+            'transition': 'width 2s'
+          }
+        }></div>
+      </div>
+    </div>
+  )
+}
+
+Progress.propTypes = {
+  value: PropTypes.arrayOf(PropTypes.number).isRequired,
+}
+
+export default Progress

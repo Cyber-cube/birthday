@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 // import "./main.css"
 
-function App({ className }) {
+function App({ id, info, progressObj }) {
 
-  const [posTop, setPosTop] = useState(100)
+  const [posTop, setPosTop] = useState(125)
   const [posLeft, setPosLeft] = useState(50)
   const [isHeld, setIsHeld] = useState(false)
   // const [offsetX, setOffsetX] = useState()
@@ -18,7 +18,9 @@ function App({ className }) {
   const mainOffsetY = useRef()
   // const [isTouchDevice, setIsTouchDevice] = useState()
   const isTouchDevice = useRef()
-  
+
+  const divElemRef = useRef()
+
   function touchDevice() {
     try {
       document.createEvent("TouchEvent")
@@ -36,16 +38,27 @@ function App({ className }) {
     offsetX.current = div.offsetLeft
     offsetY.current = div.offsetTop
 
+    /* setTimeout(() => {
+      divElemRef.current.style.transform = 'rotate(90deg)'
+    }, 5000) */
+
     touchDevice()
     // setInterval(() => {console.log(document.querySelector('div').style.zIndex)}, 3000)
 
     console.log("meow")
   }, [])
 
+  /* useEffect(() => {
+    const div = document.querySelector('.div')
+
+    div.style.animation = 'rotating 0s 1'
+  }) */
+
   function handleMove(event) {
     if (isHeld) {
       setPosTop(event.clientY - mainOffsetY.current)
       setPosLeft(event.clientX - mainOffsetX.current)
+      console.log(progressObj, info)
       /* console.log("Movement")
       console.log(offsetX, offsetY, posLeft, posTop, event) */
       offsetX.current = posLeft
@@ -55,6 +68,7 @@ function App({ className }) {
 
   function mouseDown(event) {
     event.preventDefault()
+
     // console.log("start")
     setIsHeld(true)
     mainOffsetX.current = event.clientX - offsetX.current
@@ -71,11 +85,29 @@ function App({ className }) {
       console.log(offsetX, offsetY, posLeft, posTop, event) */
       offsetX.current = posLeft
       offsetY.current = posTop
+      if (!info.data[id].moved) {
+        progressObj.setValue(() => progressObj.value + 1)
+        info.setData({ ...info.data, [id]: { ...info.data[id], moved: true } })
+        console.log(info)
+      }
+    }
+  }
+
+  function handleTouchEnd(event) {
+    if (isHeld) {
+      divElemRef.current.style.animation = 'none'
+      console.log(progressObj.value)
+      // setIsHeld(false)
     }
   }
 
   function handleTouchDown(event) {
+    console.log(isHeld)
     setIsHeld(true)
+    console.log("meow", divElemRef.current.style)
+
+    divElemRef.current.style.animation = 'rotating 0.5s linear infinite'
+
     mainOffsetX.current = event.touches[0].clientX - offsetX.current
     mainOffsetY.current = event.touches[0].clientY - offsetY.current
     // console.log(zIndex)
@@ -85,17 +117,21 @@ function App({ className }) {
   return (
     <>
       <div
+        ref={divElemRef}
         // draggable="true"
-        className={`div ${className}`}
+        className={`div`}
         onMouseDown={() => !isTouchDevice.current ? mouseDown(event) : null}
         onMouseMove={() => !isTouchDevice.current ? handleMove(event) : null}
         onMouseUp={() => {
-          !isTouchDevice.current ? setIsHeld(false) : null
+          !isTouchDevice.current ? () => {
+            setIsHeld(false)
+          } : null
         }}
 
         onTouchStart={() => isTouchDevice.current ? handleTouchDown(event) : null}
         onTouchMove={() => isTouchDevice.current ? handleTouchMove(event) : null}
-        onTouchEnd={() => isTouchDevice.current ? setIsHeld(false) : null}
+        onTouchEnd={() => isTouchDevice.current ? handleTouchEnd(event) : null}
+
         style={
           {
             position: "absolute",
@@ -103,17 +139,35 @@ function App({ className }) {
             left: `${posLeft}px`,
             cursor: 'grab',
             userSelect: 'none',
-            border: 'solid 2px black',
+            border: 'solid 2px #7A1C1C',
+            height: '15rem',
+            width: '15rem',
+            display: 'grid',
+            placeItems: 'center',
+            color: '#7A1C1C',
+            padding: '10px',
+            // boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+            // backgroundColor: '#EDF4FA',
+            // backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp0eVdpQMiMRETnZGdBo4ccgZ5-9X-grezNg&usqp=CAU')",
             // zIndex: zIndex,
             // transform: `translate(${posLeft}px, ${posTop}px)`,
+            ...info.data[id].style
           }}
-      >Component 1</div>
+      ><p>{info.data[id].text}</p></div>
     </>
   )
 }
 
 App.propTypes = {
-  className: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  info: PropTypes.shape({
+    data: PropTypes.object.isRequired,
+    setData: PropTypes.func.isRequired,
+  }).isRequired,
+  progressObj: PropTypes.shape({
+    value: PropTypes.number.isRequired,
+    setValue: PropTypes.func.isRequired
+  })
 }
 
 export default App

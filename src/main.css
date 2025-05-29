@@ -1,19 +1,54 @@
-.z-index-high {
-  z-index: 2;
-  background-color: green;
-  width: 20rem;
-  height: 20rem;
+.z-index-one {
+  /* z-index: 2; */
+  /* background-color: green; */
+  /* width: 15rem;
+  height: 15rem; */
 }
 
-.z-index-low {
-  z-index: 1;
-  background-color: blue;
+.z-index-two {
+  /* z-index: 1; */
+  /* background-color: blue; */
+}
+
+/* .div {
+  animation-name: rotating;
+  animation-iteration-count: infinite;
+  animation-duration: 0.5s;
+
+  animation-timing-function: initial;
+  animation-fill-mode: backwards;
+  animation-play-state: paused;
+} */
+
+.div {
+  color: '#2D2D2D'
 }
 
 body {
   overscroll-behavior: none;
   overflow-y: hidden;
   touch-action: none;
+  /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzM84GFu-oKj_FqOdt5K56xytYme-A_i2n1Q&usqp=CAU'); */
+  /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyOvV_v_pH8_RhlBWoRek-WTXOf0rMe5GZAQ&usqp=CAU'); */
+  background-color: '#efe9e5';
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 /* body {
