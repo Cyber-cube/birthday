@@ -11,16 +11,16 @@ function Ui() {
     one: {
       moved: false,
       style: {
-        backgroundColor: '#D9B483',
+        backgroundColor: '#D4A874',
         zIndex: 16,
       },
-      text: "Hii Lakshita! I've prepared this site as a birthday card for you. Hope you'll like this and guess who I am! (this sounds so akward...)"
+      text: "Hii Lakshita! I've prepared this site as a birthday card for you. Hope you'll like this and guess who I am! (this sounds so akward... and please read everything... you can move this card to find another one below it)"
     },
 
     two: {
       moved: false,
       style: {
-        backgroundColor: '#DBB681',
+        backgroundColor: '#D3A771',
         zIndex: 15,
       },
       text: 'So first of all, happy birthday! And a little background on this site. I started planning this since the end of finals of previous session.'
@@ -41,13 +41,13 @@ function Ui() {
         backgroundColor: '#D8B280',
         zIndex: 13,
       },
-      text: 'The source code is available on https://github.com/Cyber-cube/birthday btw. Ok back to the actual content, have you guessed who I am till now ?'
+      text: (<>The source code is available <a href="https://github.com/Cyber-cube/birthday">Here</a> btw. Ok back to the actual content, have you guessed who I am till now ?</>)
     },
 
     five: {
       moved: false,
       style: {
-        backgroundColor: '#D3A771',
+        backgroundColor: '#DBB681',
         zIndex: 12,
       },
       text: 'I just remember how excited I felt when you weren\'t going to bseb ^-^. Happy birthday again!'
@@ -56,7 +56,7 @@ function Ui() {
     six: {
       moved: false,
       style: {
-        backgroundColor: '#D4A874',
+        backgroundColor: '#D9B483',
         zIndex: 11,
       },
       text: 'The favourite moment I remember with you is when we were arranging the copies of maths\' half yearly exam previous session. I wanted that moment to never end. Idk if you remember it or not but I do.'
@@ -113,7 +113,7 @@ function Ui() {
         backgroundColor: '#F6E2C3',
         zIndex: 5,
       },
-      text: 'Next year this would be way better as there would be more memories and I would have more skills and probably a better sense od colorschemes.'
+      text: 'Next year this would be way better as there would be more memories and I would have more skills and probably a better sense of colorschemes.'
     },
 
     thirteen: {
@@ -131,7 +131,7 @@ function Ui() {
         backgroundColor: '#FBEAD5',
         zIndex: 3,
       },
-      text: 'Anyways try when you\'ll rate this in school, please be frank.'
+      text: 'Anyways when you\'ll rate this in school, please frankly tell if you liked this or not.'
     },
 
     fifteen: {
@@ -140,7 +140,7 @@ function Ui() {
         backgroundColor: '#FDF1DE',
         zIndex: 2,
       },
-      text: 'Happy birthday again, may you live long, a happy and wonderful life full of great memories and excel in all fields.'
+      text: 'Happy birthday again and may you live a long, happy, and wonderful life — full of beautiful memories and success in everything you do.'
     },
 
     sixteen: {
@@ -149,7 +149,7 @@ function Ui() {
         backgroundColor: '#FFF6E6',
         zIndex: 1,
       },
-      text: 'And.... 大好きだよ'
+      text: 'And.... 君が大好きだよ'
     },
   })
 
@@ -236,9 +236,18 @@ function Ui() {
       <div ref={divRef} style={{
         opacity: "0%",
         // display: "none",
-        transition: "opacity 1s ease-in-out"
+        transition: "opacity 2s ease-in-out",
+        color: '#7A1C1C',
+        backgroundColor: '#FFF6E6',
+        border: 'solid 2px #7A1C1C',
+        position: 'absolute',
+        width: '15rem',
+        height: '15rem',
+        top: 100,
+        left: 60,
+        padding: '5px'
       }}>
-        <p>Here's the fact— Our birthday fall on the same day... almost every year and our birthday is exactly 2 weeks apart &lt;3! (If you don't know my birth date, it's on 13th of June)</p>
+        <p>Here's the fact— Our birthday fall on the same day... almost every year and our birthday is exactly 2 weeks apart &lt;3! (If you don't know my birth date, it's on 13th of June)</p><p>Now you've reached the end, you can refresh to view from start again</p>
       </div>
     </>
   )

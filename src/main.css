@@ -30,7 +30,11 @@ body {
   touch-action: none;
   /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzM84GFu-oKj_FqOdt5K56xytYme-A_i2n1Q&usqp=CAU'); */
   /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyOvV_v_pH8_RhlBWoRek-WTXOf0rMe5GZAQ&usqp=CAU'); */
-  background-color: '#efe9e5';
+  /* background-image: url('https://pnghq.com/wp-content/uploads/2023/02/heart-heart-background-png-1563.png'); */
+  background-image: url('assets/pexels-karolina-grabowska-4197491.jpg');
+  /* background-image: url('https://img.freepik.com/free-vector/flat-design-wildflower-heart-background_23-2150534247.jpg?t=st=1748577576~exp=1748581176~hmac=d47a9d453a835f230e98a9f00efaf52768c8986fc5f9d43dd28bbb4bda70a9a7&w=1060'); */
+  background-position: 50% 5%;
+  /* background-color: '#efe9e5'; */
 }
 
 @keyframes rotating {
