@@ -26,6 +26,7 @@ function App({ id, info, progressObj }) {
       document.createEvent("TouchEvent")
       // setIsTouchDevice(true)
       isTouchDevice.current = true
+
     } catch (e) {
       // setIsTouchDevice(false)
       isTouchDevice.current = false
@@ -63,6 +64,9 @@ function App({ id, info, progressObj }) {
       console.log(offsetX, offsetY, posLeft, posTop, event) */
       offsetX.current = posLeft
       offsetY.current = posTop
+    }
+    else {
+      console.log("Mewo not working")
     }
   }
 
@@ -115,7 +119,10 @@ function App({ id, info, progressObj }) {
   }
 
   return (
-    <>
+    <div style={{
+      "display": "grid",
+      "placeItems": "center"
+    }}>
       <div
         ref={divElemRef}
         // draggable="true"
@@ -154,7 +161,7 @@ function App({ id, info, progressObj }) {
             ...info.data[id].style
           }}
       ><p>{info.data[id].text}</p></div>
-    </>
+    </div>
   )
 }
 

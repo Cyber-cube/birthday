@@ -9,7 +9,6 @@
   /* z-index: 1; */
   /* background-color: blue; */
 }
-
 /* .div {
   animation-name: rotating;
   animation-iteration-count: infinite;
@@ -34,6 +33,8 @@ body {
   background-image: url('assets/pexels-karolina-grabowska-4197491.jpg');
   /* background-image: url('https://img.freepik.com/free-vector/flat-design-wildflower-heart-background_23-2150534247.jpg?t=st=1748577576~exp=1748581176~hmac=d47a9d453a835f230e98a9f00efaf52768c8986fc5f9d43dd28bbb4bda70a9a7&w=1060'); */
   background-position: 50% 5%;
+  background-size: cover;
+  /* background-repeat: no-repeat; */
   /* background-color: '#efe9e5'; */
 }
 

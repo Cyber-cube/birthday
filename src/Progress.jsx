@@ -2,11 +2,11 @@ import PropTypes from "prop-types"
 
 function Progress({ value }) {
   return (
-    <div style={{
+    <div className={"progress"} style={{
       'display': 'grid',
       /* 'justifyContent': 'center',
       'alignContent': 'center' */
-      'placeItems': 'center'
+      'placeItems': 'center',
     }}>
       <p style={{color: '#7A1C1C'}}>Move the cards to progress!</p>
       <div style={{
