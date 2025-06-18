@@ -64,6 +64,12 @@ function App({ id, info, progressObj }) {
       console.log(offsetX, offsetY, posLeft, posTop, event) */
       offsetX.current = posLeft
       offsetY.current = posTop
+
+      if (!info.data[id].moved) {
+        progressObj.setValue(() => progressObj.value + 1)
+        info.setData({ ...info.data, [id]: { ...info.data[id], moved: true } })
+        console.log(info)
+      }
     }
     else {
       console.log("Mewo not working")
@@ -73,6 +79,7 @@ function App({ id, info, progressObj }) {
   function mouseDown(event) {
     event.preventDefault()
 
+    divElemRef.current.style.animation = 'rotating 0.5s linear infinite'
     // console.log("start")
     setIsHeld(true)
     mainOffsetX.current = event.clientX - offsetX.current
@@ -132,6 +139,16 @@ function App({ id, info, progressObj }) {
         onMouseUp={() => {
           !isTouchDevice.current ? () => {
             setIsHeld(false)
+
+            divElemRef.current.style.animation = 'none'
+          } : null
+        }}
+        
+        onMouseLeave={() => {
+          !isTouchDevice.current ? () => {
+            setIsHeld(false)
+
+            divElemRef.current.style.animation = 'none'
           } : null
         }}
 
